@@ -11,15 +11,31 @@ const NavBar: React.FC = (): JSX.Element => {
     navigate("/login");
   };
   return (
-    <Navbar className="shadow" sticky="top" bg="light" expand="lg">
+    <Navbar
+      className="shadow"
+      // bg="light"
+      style={{ backgroundColor: "#000080", color: "#ffffff" }}
+      sticky="top"
+      expand="lg"
+    >
       <Container>
-        <Navbar.Brand href="/">{<FaHome />}</Navbar.Brand>
+        <Navbar.Brand href="/" style={{ color: "#ffffff" }}>
+          {<FaHome />}
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="/staff">Staff</Nav.Link>
-            <Nav.Link href="/departments">Departments</Nav.Link>
-            <NavDropdown title="Others" id="basic-nav-dropdown">
+            <Nav.Link href="/staffs" style={{ color: "#ffffff" }}>
+              Staff
+            </Nav.Link>
+            <Nav.Link href="/departments" style={{ color: "#ffffff" }}>
+              Departments
+            </Nav.Link>
+            <NavDropdown
+              style={{ backgroundColor: "#ffffff", borderRadius: ".5rem" }}
+              title="Others"
+              id="basic-nav-dropdown"
+            >
               <NavDropdown.Item href="/coplaints">Complaints</NavDropdown.Item>
               <NavDropdown.Item href="/leaves">Leaves</NavDropdown.Item>
               <NavDropdown.Item href="/notice">Notice</NavDropdown.Item>

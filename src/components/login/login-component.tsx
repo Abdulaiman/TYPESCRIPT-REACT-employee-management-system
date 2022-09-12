@@ -31,7 +31,7 @@ const Login: React.FC = () => {
       navigate("/");
     } catch (err) {
       console.log(err);
-      alert("incorrect email address or password please check and try again");
+      alert("an error occur check connection/input and try again");
     }
   };
 

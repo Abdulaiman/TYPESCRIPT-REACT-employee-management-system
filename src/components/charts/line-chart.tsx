@@ -1,4 +1,6 @@
-import React from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import DOMAIN from "../../utils/proxy";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -23,6 +25,27 @@ ChartJS.register(
   Legend
 );
 const LineChart = () => {
+  const [dashStatsNum, SetDashStatsNum] = useState<Number[]>();
+  const [dashStatsStr, SetDashStatsStr] = useState<String[]>();
+  const token = localStorage.getItem("token");
+  useEffect(() => {
+    const getData = async () => {
+      const data = await axios.get(
+        `${DOMAIN.URL}/api/v1/leaves/get-leave-stats`,
+        {
+          headers: { authorization: `Bearer ${token}` },
+        }
+      );
+      console.log(data);
+      SetDashStatsNum(
+        data?.data?.stats2.map((el: { sum: Number; _id: String }) => el.sum)
+      );
+      SetDashStatsStr(
+        data?.data?.stats2.map((el: { sum: Number; _id: String }) => el._id)
+      );
+    };
+    getData();
+  }, [token]);
   const options = {
     responsive: true,
     plugins: {
@@ -36,15 +59,13 @@ const LineChart = () => {
     },
   };
 
-  const labels = ["holiday", "sick-leave", "vacation", "emergency"];
-
   const data = {
-    labels,
+    labels: dashStatsStr,
     datasets: [
       {
         fill: true,
         label: "Dataset 2",
-        data: labels.map((el, i) => i),
+        data: dashStatsNum,
         borderColor: "rgb(53, 162, 235)",
         backgroundColor: "rgba(53, 162, 235, 0.5)",
       },
