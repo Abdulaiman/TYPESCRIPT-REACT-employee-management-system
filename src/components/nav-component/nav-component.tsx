@@ -38,7 +38,7 @@ const NavBar: React.FC = (): JSX.Element => {
             >
               <NavDropdown.Item href="/coplaints">Complaints</NavDropdown.Item>
               <NavDropdown.Item href="/leaves">Leaves</NavDropdown.Item>
-              <NavDropdown.Item href="/notice">Notice</NavDropdown.Item>
+              <NavDropdown.Item href="/notices">Notices</NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item href="/login" onClick={logoutHandler}>
                 LOGOUT

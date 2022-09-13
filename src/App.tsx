@@ -7,6 +7,8 @@ import NavBar from "./components/nav-component/nav-component";
 import "./App.css";
 import Staffs from "./components/staff/staff-component";
 import SingleStaff from "./components/single-staff/single-staff-component";
+import Department from "./components/department/department-component";
+import Notice from "./components/notice/notice-component";
 
 const App: React.FC = (): JSX.Element => {
   return (
@@ -40,6 +42,28 @@ const App: React.FC = (): JSX.Element => {
             <>
               <NavBar />
               <SingleStaff />
+            </>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/departments"
+        element={
+          <ProtectedRoute>
+            <>
+              <NavBar />
+              <Department />
+            </>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/notices"
+        element={
+          <ProtectedRoute>
+            <>
+              <NavBar />
+              <Notice />
             </>
           </ProtectedRoute>
         }

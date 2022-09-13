@@ -16,7 +16,7 @@ import "./single-staff-styles.css";
 const SingleStaff = () => {
   const [staffInfo, setStaffInfo] = useState({
     address: "",
-    allowedLeaves: 0,
+    allowedLeaves: "",
     birthday: "",
     city: "",
     country: "",
@@ -26,8 +26,8 @@ const SingleStaff = () => {
     gender: "",
     isVerified: false,
     lastName: "",
-    leavesTaken: 0,
-    mobileNumber: 0,
+    leavesTaken: "",
+    mobileNumber: "",
     role: "",
     _id: "",
   });
@@ -235,7 +235,7 @@ const SingleStaff = () => {
                 <Form.Label>Mobile</Form.Label>
                 <Form.Control
                   defaultValue={staffInfo.mobileNumber}
-                  type="Number"
+                  type="text"
                   placeholder="Mobile"
                   onChange={(e) => {
                     setStaffInfo({
@@ -255,7 +255,7 @@ const SingleStaff = () => {
                 <Form.Label>leaves taken</Form.Label>
                 <Form.Control
                   defaultValue={staffInfo.leavesTaken}
-                  type="Number"
+                  type="text"
                   placeholder="leaves taken"
                   onChange={(e) => {
                     setStaffInfo({
@@ -292,7 +292,6 @@ const SingleStaff = () => {
               <Form.Group className="mb-3" controlId="formBasicPassword">
                 <Form.Label>department</Form.Label>
                 <Form.Select
-                  // defaultValue={staffInfo?.department?.name}
                   aria-label="Default select example"
                   onChange={(e) => {
                     setStaffInfo({
@@ -304,8 +303,8 @@ const SingleStaff = () => {
                 >
                   <>
                     <option>select</option>
-                    {departments?.map((el: { name: string }) => (
-                      <option>{el.name}</option>
+                    {departments?.map((el: { name: string }, i: number) => (
+                      <option key={`${i + 1}`}>{el.name}</option>
                     ))}
                   </>
                 </Form.Select>
