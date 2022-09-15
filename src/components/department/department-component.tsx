@@ -41,6 +41,7 @@ const Department: React.FC = (): JSX.Element => {
   const navigate = useNavigate();
   const token: string | null = localStorage.getItem("token");
 
+  const user: { role: String } = JSON.parse(`${localStorage.getItem("user")}`);
   useEffect(() => {
     const getData = async () => {
       const data2 = await axios.get(`${DOMAIN.URL}/api/v1/departments`, {
@@ -227,16 +228,20 @@ const Department: React.FC = (): JSX.Element => {
         <Col>
           <h1>All Departments</h1>
         </Col>
-        <Col>
-          <Button
-            className="verify-btn"
-            onClick={() => {
-              setShow(true);
-            }}
-          >
-            Add Department
-          </Button>
-        </Col>
+        {user?.role === "admin" ? (
+          <Col>
+            <Button
+              className="verify-btn"
+              onClick={() => {
+                setShow(true);
+              }}
+            >
+              Add Department
+            </Button>
+          </Col>
+        ) : (
+          ""
+        )}
       </Row>
       <Row>
         <Table striped bordered hover>
@@ -246,7 +251,8 @@ const Department: React.FC = (): JSX.Element => {
               <th>Name</th>
               <th>Manager</th>
               <th>Developers</th>
-              <th>Update</th>
+
+              {user?.role === "admin" ? <th>Update</th> : ""}
             </tr>
           </thead>
           <tbody>
@@ -262,17 +268,21 @@ const Department: React.FC = (): JSX.Element => {
                     )}
                   </td>
 
-                  <td>
-                    <Button
-                      type="submit"
-                      variant="success"
-                      onClick={(e) => {
-                        onDetailsHander(e, el._id);
-                      }}
-                    >
-                      Update
-                    </Button>
-                  </td>
+                  {user?.role === "admin" ? (
+                    <td>
+                      <Button
+                        type="submit"
+                        variant="success"
+                        onClick={(e) => {
+                          onDetailsHander(e, el._id);
+                        }}
+                      >
+                        Update
+                      </Button>
+                    </td>
+                  ) : (
+                    ""
+                  )}
                 </tr>
               );
             })}

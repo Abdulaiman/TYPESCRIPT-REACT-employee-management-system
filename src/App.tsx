@@ -9,6 +9,8 @@ import Staffs from "./components/staff/staff-component";
 import SingleStaff from "./components/single-staff/single-staff-component";
 import Department from "./components/department/department-component";
 import Notice from "./components/notice/notice-component";
+import Complaints from "./components/complaints/complaints-component";
+import Leaves from "./components/leaves/leaves-component";
 
 const App: React.FC = (): JSX.Element => {
   return (
@@ -64,6 +66,28 @@ const App: React.FC = (): JSX.Element => {
             <>
               <NavBar />
               <Notice />
+            </>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/complaints"
+        element={
+          <ProtectedRoute>
+            <>
+              <NavBar />
+              <Complaints />
+            </>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/leaves"
+        element={
+          <ProtectedRoute>
+            <>
+              <NavBar />
+              <Leaves />
             </>
           </ProtectedRoute>
         }

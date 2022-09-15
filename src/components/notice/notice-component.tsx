@@ -21,6 +21,9 @@ const Notice: React.FC = (): JSX.Element => {
   const [show, setShow] = useState<boolean>(false);
   const [showAlert, setShowAlert] = useState<boolean>(false);
   const [showAdd, setShowAdd] = useState<boolean>(false);
+  const user: { role: String; firstName: String } = JSON.parse(
+    `${localStorage.getItem("user")}`
+  );
   const [noticeInfo, setNoticeInfo] = useState({
     header: "",
     notice: "",
@@ -195,11 +198,15 @@ const Notice: React.FC = (): JSX.Element => {
         <Col>
           <h1>All Notice</h1>
         </Col>
-        <Col>
-          <Button variant="info" onClick={() => setShowAdd(true)}>
-            Add Notice
-          </Button>
-        </Col>
+        {user?.role === "admin" ? (
+          <Col>
+            <Button variant="info" onClick={() => setShowAdd(true)}>
+              Add Notice
+            </Button>
+          </Col>
+        ) : (
+          ""
+        )}
       </Row>
       {notices?.map(
         (
@@ -212,27 +219,33 @@ const Notice: React.FC = (): JSX.Element => {
               <Card.Body>
                 <Card.Title>{el.header}</Card.Title>
                 <Card.Text>{el.notice}</Card.Text>
-                <Button
-                  variant="danger"
-                  className="delete-btn"
-                  onClick={(e) => {
-                    onDeleteNotice(e, el._id);
-                  }}
-                >
-                  Delete
-                </Button>
-                <Button
-                  onClick={() => {
-                    localStorage.setItem("id", el._id);
-                    setShow(true);
-                  }}
-                  variant="success"
-                >
-                  Edit
-                </Button>
+                {user?.role === "admin" ? (
+                  <>
+                    <Button
+                      variant="danger"
+                      className="delete-btn"
+                      onClick={(e) => {
+                        onDeleteNotice(e, el._id);
+                      }}
+                    >
+                      Delete
+                    </Button>
+                    <Button
+                      onClick={() => {
+                        localStorage.setItem("id", el._id);
+                        setShow(true);
+                      }}
+                      variant="success"
+                    >
+                      Edit
+                    </Button>{" "}
+                  </>
+                ) : (
+                  ""
+                )}
               </Card.Body>
               <Card.Footer className="text-muted">
-                {el.date?.slice(0, 10)}
+                Posted On: {el.date?.slice(0, 10)}
               </Card.Footer>
             </Card>
           </Row>

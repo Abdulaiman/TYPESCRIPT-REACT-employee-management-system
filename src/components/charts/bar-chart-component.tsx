@@ -21,19 +21,29 @@ ChartJS.register(
   Tooltip,
   Legend
 );
+interface Istaff {
+  staff?: boolean;
+}
 
-const BarChart: React.FC = (): JSX.Element => {
+const BarChart: React.FC<Istaff> = ({ staff }): JSX.Element => {
   const [dashStatsNum, SetDashStatsNum] = useState<Number[]>();
   const [dashStatsStr, SetDashStatsStr] = useState<String[]>();
   const token = localStorage.getItem("token");
   useEffect(() => {
     const getData = async () => {
-      const data = await axios.get(
-        `${DOMAIN.URL}/api/v1/leaves/get-leave-stats`,
-        {
+      let data;
+      if (!staff) {
+        data = await axios.get(`${DOMAIN.URL}/api/v1/leaves/get-leave-stats`, {
           headers: { authorization: `Bearer ${token}` },
-        }
-      );
+        });
+      } else {
+        data = await axios.get(
+          `${DOMAIN.URL}/api/v1/leaves/get-my-leaves-stats`,
+          {
+            headers: { authorization: `Bearer ${token}` },
+          }
+        );
+      }
 
       SetDashStatsNum(
         data?.data?.stats2.map((el: { sum: Number; _id: String }) => el.sum)

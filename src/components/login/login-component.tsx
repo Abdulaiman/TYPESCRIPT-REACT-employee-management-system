@@ -27,6 +27,7 @@ const Login: React.FC = () => {
       const data = await axios.post(`${DOMAIN.URL}/api/v1/users/login`, input);
 
       localStorage.setItem("token", data.data.token);
+      localStorage.setItem("user", JSON.stringify(data.data.user));
 
       navigate("/");
     } catch (err) {

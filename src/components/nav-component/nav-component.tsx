@@ -3,17 +3,16 @@ import { useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { FaHome } from "react-icons/fa";
 const NavBar: React.FC = (): JSX.Element => {
-  const navigate = useNavigate();
+  const user: { role: String } = JSON.parse(`${localStorage.getItem("user")}`);
+
   const logoutHandler = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     localStorage.clear();
-    navigate("/login");
   };
   return (
     <Navbar
       className="shadow"
-      // bg="light"
       style={{ backgroundColor: "#000080", color: "#ffffff" }}
       sticky="top"
       expand="lg"
@@ -22,12 +21,19 @@ const NavBar: React.FC = (): JSX.Element => {
         <Navbar.Brand href="/" style={{ color: "#ffffff" }}>
           {<FaHome />}
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Toggle
+          aria-controls="basic-navbar-nav"
+          style={{ backgroundColor: "#ffffff" }}
+        />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="/staffs" style={{ color: "#ffffff" }}>
-              Staff
-            </Nav.Link>
+            {user?.role === "admin" ? (
+              <Nav.Link href="/staffs" style={{ color: "#ffffff" }}>
+                Staff
+              </Nav.Link>
+            ) : (
+              ""
+            )}
             <Nav.Link href="/departments" style={{ color: "#ffffff" }}>
               Departments
             </Nav.Link>
@@ -36,7 +42,7 @@ const NavBar: React.FC = (): JSX.Element => {
               title="Others"
               id="basic-nav-dropdown"
             >
-              <NavDropdown.Item href="/coplaints">Complaints</NavDropdown.Item>
+              <NavDropdown.Item href="/complaints">Complaints</NavDropdown.Item>
               <NavDropdown.Item href="/leaves">Leaves</NavDropdown.Item>
               <NavDropdown.Item href="/notices">Notices</NavDropdown.Item>
               <NavDropdown.Divider />
