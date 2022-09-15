@@ -11,6 +11,7 @@ import Department from "./components/department/department-component";
 import Notice from "./components/notice/notice-component";
 import Complaints from "./components/complaints/complaints-component";
 import Leaves from "./components/leaves/leaves-component";
+import SignUp from "./components/signUp/sign-up-component";
 
 const App: React.FC = (): JSX.Element => {
   return (
@@ -93,6 +94,7 @@ const App: React.FC = (): JSX.Element => {
         }
       />
       <Route path="/login" element={<Login />} />
+      <Route path="/sign-up" element={<SignUp />} />
     </Routes>
   );
 };
