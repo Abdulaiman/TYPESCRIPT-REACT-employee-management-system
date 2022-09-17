@@ -6,19 +6,16 @@
   color: white;
   min-height: 12.5rem;
   margin-top: -3rem;
-
   margin-bottom: -1.5rem;
 }
 .dashboard-container {
   padding-top: 3rem;
   min-width: 100vw;
   min-height: 100vh;
-
   background-color: #ffffff;
 }
 .box-container {
   display: flex;
-
   color: white;
   flex-direction: column;
   text-align: center;
@@ -28,9 +25,7 @@
   margin-left: 2rem;
   margin-bottom: 1rem;
 }
-.box-row {
-  padding-left: 2.5rem;
-}
+
 .staff-chat {
   display: flex;
   align-items: center;
