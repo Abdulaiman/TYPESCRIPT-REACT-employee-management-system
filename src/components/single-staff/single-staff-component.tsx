@@ -70,7 +70,6 @@ const SingleStaff = () => {
     setShow(true);
   };
 
-  console.log(staffInfo);
   return (
     <Container>
       <Card className="shadow-lg staff-card">

@@ -1,4 +1,4 @@
 const DOMAIN: { URL: String } = {
-  URL: "http://localhost:8000",
+  URL: "https://stark-brook-15908.herokuapp.com",
 };
 export default DOMAIN;

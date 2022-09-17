@@ -6,8 +6,15 @@ const ProtectedRoute = ({
   children: JSX.Element;
 }): JSX.Element => {
   const token = localStorage.getItem("token");
+
+  const user: { role: String; isVerified: Boolean } = JSON.parse(
+    `${localStorage.getItem("user")}`
+  );
   if (!token) {
     return <Navigate to="/login" />;
+  }
+  if (user.isVerified !== true) {
+    return <Navigate to="/not-verified" />;
   }
   return children;
 };

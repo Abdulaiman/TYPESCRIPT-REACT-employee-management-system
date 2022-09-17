@@ -12,6 +12,7 @@ import Notice from "./components/notice/notice-component";
 import Complaints from "./components/complaints/complaints-component";
 import Leaves from "./components/leaves/leaves-component";
 import SignUp from "./components/signUp/sign-up-component";
+import NotVerified from "./components/not-verified/not-verified-component";
 
 const App: React.FC = (): JSX.Element => {
   return (
@@ -95,6 +96,7 @@ const App: React.FC = (): JSX.Element => {
       />
       <Route path="/login" element={<Login />} />
       <Route path="/sign-up" element={<SignUp />} />
+      <Route path="/not-verified" element={<NotVerified />} />
     </Routes>
   );
 };

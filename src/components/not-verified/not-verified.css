@@ -1,0 +1,17 @@
+.waiting-parent {
+  min-width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #000080;
+}
+.text-waiting-container {
+  padding: 2rem;
+  color: #000080;
+  font-family: Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+    sans-serif;
+  background-color: #fff;
+  border-radius: 1rem;
+  text-align: center;
+}
