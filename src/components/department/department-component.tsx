@@ -38,7 +38,6 @@ const Department: React.FC = (): JSX.Element => {
     developers: { name: "" },
   });
   const [users, setUsers] = useState<Iinfo["users"]>();
-  const navigate = useNavigate();
   const token: string | null = localStorage.getItem("token");
 
   const user: { role: String } = JSON.parse(`${localStorage.getItem("user")}`);

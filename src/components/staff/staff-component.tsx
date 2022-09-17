@@ -175,10 +175,6 @@ const Staffs: React.FC = (): JSX.Element => {
               <th>#</th>
               <th>First</th>
               <th>Email</th>
-              <th>City/Country</th>
-              <th>leaves/20</th>
-              <th>Department</th>
-              <th>Role</th>
               <th>View/Update</th>
             </tr>
           </thead>
@@ -189,14 +185,6 @@ const Staffs: React.FC = (): JSX.Element => {
                   <td>{i + 1}</td>
                   <td>{el.firstName}</td>
                   <td>{el.email}</td>
-                  <td>
-                    {el.city}/{el.country}
-                  </td>
-                  <td>
-                    {`${el.leavesTaken}`}/{`${el.allowedLeaves}`}
-                  </td>
-                  <td>{el?.department?.name}</td>
-                  <td>{el.role}</td>
                   <td>
                     <Button
                       type="submit"
