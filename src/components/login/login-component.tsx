@@ -35,6 +35,28 @@ const Login: React.FC = () => {
       alert("an error occur check connection/input and try again");
     }
   };
+  const onDemoAdmin = async () => {
+    const data = await axios.post(`${DOMAIN.URL}/api/v1/users/login`, {
+      email: "1@test.com",
+      password: "test1234",
+    });
+
+    localStorage.setItem("token", data.data.token);
+    localStorage.setItem("user", JSON.stringify(data.data.user));
+
+    navigate("/");
+  };
+  const onDemoDeveloper = async () => {
+    const data = await axios.post(`${DOMAIN.URL}/api/v1/users/login`, {
+      email: "testing1@test.com",
+      password: "test1234",
+    });
+
+    localStorage.setItem("token", data.data.token);
+    localStorage.setItem("user", JSON.stringify(data.data.user));
+
+    navigate("/");
+  };
 
   return (
     <Container
@@ -65,7 +87,7 @@ const Login: React.FC = () => {
           Login
         </Card.Title>
         <Card.Body>
-          <Form style={{ width: "15rem" }}>
+          <Form style={{ width: "22.5rem" }}>
             <Form.Group className="mb-3">
               <Form.Label htmlFor={"emailAddress"}>email adress</Form.Label>
               <Form.Control
@@ -103,9 +125,31 @@ const Login: React.FC = () => {
                 backgroundColor: "	#000080",
                 cursor: "pointer",
                 border: "none",
+                marginRight: "1rem",
               }}
             >
               Login
+            </Button>
+            <Button
+              variant="info"
+              onClick={onDemoAdmin}
+              style={{
+                cursor: "pointer",
+                border: "none",
+                marginRight: "1rem",
+              }}
+            >
+              Demo Admin
+            </Button>
+            <Button
+              variant="success"
+              onClick={onDemoDeveloper}
+              style={{
+                cursor: "pointer",
+                border: "none",
+              }}
+            >
+              Demo Developer
             </Button>
           </Form>
         </Card.Body>

@@ -15,10 +15,8 @@ const SignUp: React.FC = (): JSX.Element => {
     mobileNumber: "",
     birthday: "",
     gender: "",
-
     city: "",
     country: "",
-
     address: "",
   });
 
@@ -40,7 +38,6 @@ const SignUp: React.FC = (): JSX.Element => {
 
     navigate("/");
   };
-  console.log(input);
   return (
     <Container
       fluid

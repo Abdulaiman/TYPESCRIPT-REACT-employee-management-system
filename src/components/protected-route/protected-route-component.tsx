@@ -13,7 +13,7 @@ const ProtectedRoute = ({
   if (!token) {
     return <Navigate to="/login" />;
   }
-  if (user.isVerified !== true) {
+  if (user?.isVerified !== true) {
     return <Navigate to="/not-verified" />;
   }
   return children;
